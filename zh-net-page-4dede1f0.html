@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>澳客官方网 · 专业数据信息站</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #f0f6fa;
+            color: #1d2b38;
+            line-height: 1.6;
+            padding: 0 1rem 2.5rem;
+            min-height: 100vh;
+        }
+        .page-wrapper {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* 主视觉 (hero) – 卡片式叠层 */
+        .hero-card {
+            background: linear-gradient(145deg, #e6f2f7 0%, #d5e9ef 100%);
+            border-radius: 2.5rem;
+            padding: 2.5rem 2rem;
+            margin: 2rem 0 1.8rem;
+            box-shadow: 0 12px 28px -10px rgba(20, 60, 80, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(2px);
+            transition: all 0.2s ease;
+        }
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0d4f5e;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+        .hero-title span {
+            background: #1d7e8f;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            margin-left: 0.25rem;
+        }
+        .hero-sub {
+            font-size: 1.05rem;
+            color: #1f5b68;
+            max-width: 85%;
+            margin-bottom: 0.6rem;
+            font-weight: 450;
+        }
+        .hero-desc {
+            color: #1d4b57;
+            font-size: 0.98rem;
+            max-width: 90%;
+            border-left: 4px solid #2a9d8f;
+            padding-left: 1.2rem;
+            background: rgba(255,255,255,0.35);
+            border-radius: 0 12px 12px 0;
+            line-height: 1.65;
+        }
+        .hero-desc a {
+            color: #095d6e;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .hero-desc a:hover {
+            color: #083f4a;
+            background: #cfe3ea;
+            text-decoration: none;
+            border-radius: 4px;
+            padding: 0 3px;
+        }
+
+        /* 网格卡片布局 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.4rem;
+            margin: 1.8rem 0 2rem;
+        }
+        .grid-card {
+            background: white;
+            border-radius: 1.8rem;
+            padding: 1.6rem 1.4rem;
+            box-shadow: 0 8px 18px -6px rgba(0, 40, 50, 0.08);
+            border: 1px solid #deecf2;
+            transition: transform 0.2s, box-shadow 0.25s;
+        }
+        .grid-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 28px -8px rgba(12, 77, 87, 0.15);
+            border-color: #9fcbd7;
+        }
+        .grid-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #094c5a;
+            margin-bottom: 0.6rem;
+            display: inline-block;
+            border-bottom: 3px solid #62b5c4;
+            padding-bottom: 0.25rem;
+        }
+        .grid-card p {
+            font-size: 0.95rem;
+            color: #1f3a45;
+            margin-top: 0.6rem;
+        }
+        .grid-card .tag {
+            display: inline-block;
+            background: #dcf0f5;
+            color: #0b5b6b;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            margin-top: 0.35rem;
+        }
+
+        /* 适合人群专用卡片 (强调蓝绿) */
+        .audience-card {
+            background: #dcecf2;
+            border-radius: 2rem;
+            padding: 1.8rem 1.8rem 2rem;
+            margin: 1.8rem 0 1.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 0.8rem 1.6rem;
+            border: 1px solid #b7d6e2;
+        }
+        .audience-card h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #065260;
+            width: 100%;
+            margin-bottom: 0.3rem;
+        }
+        .audience-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #0e4a59;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            border: 1px solid #bddae4;
+        }
+        .audience-item:before {
+            content: "▹ ";
+            color: #1b8699;
+            font-weight: 700;
+        }
+
+        /* 自然链接段落 */
+        .link-block {
+            background: white;
+            border-radius: 2rem;
+            padding: 1.5rem 1.8rem;
+            margin: 1.5rem 0;
+            border: 1px solid #cde3ea;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02);
+        }
+        .link-block p {
+            font-size: 1rem;
+            color: #1f3642;
+        }
+        .link-block a {
+            color: #0b6a7c;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 1px;
+            font-weight: 550;
+            background: transparent;
+            transition: 0.15s;
+        }
+        .link-block a:hover {
+            background: #b0d9e6;
+            color: #023946;
+            text-decoration: none;
+            border-radius: 6px;
+            padding: 0 5px;
+        }
+
+        /* 提示 / FAQ 混合行 */
+        .note-strip {
+            display: flex;
+            flex-wrap: wrap;
+            background: #edf6fa;
+            border-radius: 2rem;
+            padding: 1.4rem 1.6rem;
+            margin: 1.2rem 0 0.8rem;
+            gap: 0.6rem 1.2rem;
+            border: 1px solid #c5dbe5;
+            justify-content: space-between;
+        }
+        .note-strip p {
+            font-size: 0.92rem;
+            color: #154d5b;
+            font-weight: 450;
+        }
+        .note-strip small {
+            color: #307282;
+            opacity: 0.85;
+        }
+        .faq-mini {
+            background: white;
+            border-radius: 80px;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #0c5566;
+            border: 1px solid #b1d1dd;
+            white-space: nowrap;
+        }
+
+        /* 响应式精细调整 */
+        @media (max-width: 640px) {
+            .hero-card { padding: 1.8rem 1.2rem; margin: 1.2rem 0; }
+            .hero-title { font-size: 1.8rem; flex-direction: column; align-items: flex-start; }
+            .hero-sub, .hero-desc { max-width: 100%; }
+            .hero-desc { padding-left: 0.9rem; }
+            .card-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+            .audience-card { padding: 1.4rem; }
+            .audience-item { font-size: 0.85rem; }
+            .link-block { padding: 1.2rem; }
+            .note-strip { flex-direction: column; align-items: flex-start; }
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #b2d3df, transparent);
+            margin: 1.8rem 0 0.5rem;
+        }
+        .footer-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #567e8b;
+            padding-top: 0.5rem;
+            letter-spacing: 0.3px;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- 主视觉：信息卡片 hero -->
+    <div class="hero-card">
+        <div class="hero-title">
+            <span>数据 · 可信</span> 澳客官方网
+        </div>
+        <div class="hero-sub">体育数据聚合 · 实时情报站</div>
+        <div class="hero-desc">
+            <strong>zh-net-okooo.com</strong> 定位为面向中文用户的专业数据信息平台，聚合多维度赛事数据、动态资讯与统计模块。站点保持稳定的信息更新节奏，内容经由筛选与结构化处理，适合有数据查阅需求的用户日常使用。我们始终建议通过 <a href="https://zh-net-okooo.com">澳客官方网</a> 获取直接、未经二次转译的原始内容。
+        </div>
+    </div>
+
+    <!-- 用途卡片 (网格卡片) 三点 -->
+    <div class="card-grid">
+        <div class="grid-card">
+            <h3>赛事数据</h3>
+            <p>覆盖主流联赛及杯赛的实时比分、赛程、历史交锋与积分走势。数据字段清晰，便于快速检索与对比。</p>
+            <span class="tag">结构化</span>
+        </div>
+        <div class="grid-card">
+            <h3>情报整合</h3>
+            <p>汇集球队近况、伤停提示、天气影响等周边信息，辅助使用者建立更完整的赛前分析维度。</p>
+            <span class="tag">动态</span>
+        </div>
+        <div class="grid-card">
+            <h3>统计工具</h3>
+            <p>提供胜率、进球分布、攻防效率等基础统计模块。所有指标均基于原始数据生成，可追溯。</p>
+            <span class="tag">客观</span>
+        </div>
+    </div>
+
+    <!-- 适合人群: 卡片式标记 -->
+    <div class="audience-card">
+        <h2>适合这样的你</h2>
+        <span class="audience-item">数据爱好者</span>
+        <span class="audience-item">赛事分析读者</span>
+        <span class="audience-item">资讯效率派</span>
+        <span class="audience-item">长期跟进的用户</span>
+        <span class="audience-item">信息复核者</span>
+        <p style="width:100%; margin-top: 0.8rem; font-size:0.9rem; color:#155b69;">如果你习惯在判断前查阅多维数据，这里提供了一种轻量、直接的信息入口。</p>
+    </div>
+
+    <!-- 自然链接段落: 嵌入可信说明 -->
+    <div class="link-block">
+        <p><strong>关于站点可信度</strong> — 从信息源角度，zh-net-okooo.com 并非第三方聚合门户，而是以独立域名提供数据服务。用户在使用时可直接对照 <a href="https://zh-net-okooo.com">澳客官方网</a> 的一手内容进行交叉验证，避免信息损耗。平台不设置诱导分享或夸大宣传，所有可访问信息均保持原始呈现。对于希望减少中间环节、直接获取原始数据表的用户，将该站加入书签是一个合理选择。</p>
+    </div>
+
+    <!-- 提示 / FAQ 摘要 (混合布局) -->
+    <div class="note-strip">
+        <p>🔍 常见疑问 · 数据更新频率为每 2–5 分钟轮询，重点赛事实时推送。</p>
+        <p class="faq-mini">是否收费？ 基础数据免费浏览</p>
+        <p class="faq-mini">移动端适配良好</p>
+        <p><small>建议使用现代浏览器获得最佳卡片展示效果</small></p>
+    </div>
+
+    <!-- 额外可信说明段落 (差异化) -->
+    <div style="background: #e3f0f5; border-radius: 1.5rem; padding: 1.2rem 1.6rem; margin: 1rem 0; border-left: 6px solid #2b8c9c;">
+        <p style="font-size:0.95rem; color: #084753;"><strong>提示：</strong> 与许多信息站不同，该站点没有隐藏跳转层或过度商业拦截。你可以将 <a href="https://zh-net-okooo.com" style="color: #085f70; font-weight: 600; text-decoration: underline;">澳客官方网</a> 视为一个可靠数据锚点，在需要核查比分、赛程或联赛走势时直接打开。平台不收集不必要的个人信息，不强制注册。</p>
+    </div>
+
+    <hr>
+    <div class="footer-note">
+        <span>信息卡片风格 · 内容来源说明 · 版本 2025</span>
+    </div>
+
+</div>
+</body>
+</html>
